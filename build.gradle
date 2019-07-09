@@ -1,0 +1,18 @@
+group 'io.cloudgrey.applitools_webinar'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.5.0'
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-params', version: '5.5.0'
+    testCompile group: 'io.appium', name: 'java-client', version: '7.1.0'
+    testCompile group: 'com.applitools', name: 'eyes-appium-java4', version: '4.0.2'
+    testImplementation group: 'org.zeroturnaround', name: 'zt-exec', version: '1.10'
+}
