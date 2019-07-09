@@ -31,7 +31,7 @@ class ParallelVisualTest {
     private static BatchInfo info;
 
     ParallelVisualTest() {
-        info = new BatchInfo("webinar demo batch test");
+        info = new BatchInfo("webinar batch");
     }
 
     private void setUp(String udid, int systemPort) throws Exception {
@@ -44,7 +44,7 @@ class ParallelVisualTest {
         caps.setCapability("adbExecTimeout", 30000);
         caps.setCapability("systemPort", systemPort);
         caps.setCapability("appWaitActivity", "com.reactnativenavigation.controllers.NavigationActivity");
-        caps.setCapability("app", getResource("apps/TheApp-v2.apk").toString());
+        caps.setCapability("app", getResource("apps/TheApp-v1.apk").toString());
         // make sure we uninstall the app before each test regardless of version
         caps.setCapability("uninstallOtherPackages", "io.cloudgrey.the_app");
         driver = new AndroidDriver(server, caps);
@@ -59,7 +59,7 @@ class ParallelVisualTest {
     void testAppDesign(String udid, int systemPort) throws Exception {
         setUp(udid, systemPort);
         try {
-            eyes.open(driver, "TheApp", "[webinar] basic design test");
+            eyes.open(driver, "TheApp", "[applitools+genymotion webinar] basic design test");
 
             WebDriverWait wait = new WebDriverWait(driver, 5);
 
