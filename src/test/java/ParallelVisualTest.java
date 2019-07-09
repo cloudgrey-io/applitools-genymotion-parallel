@@ -28,13 +28,10 @@ class ParallelVisualTest {
     private final static By USERNAME_FIELD = MobileBy.AccessibilityId("username");
     private final static String CHECK_HOME = "home_screen";
     private final static String CHECK_LOGIN = "login_screen";
+    private static BatchInfo info;
 
-    public ParallelVisualTest() {
-        eyes = new Eyes();
-        BatchInfo info = new BatchInfo("webinar demo tests");
-        eyes.setLogHandler(new StdoutLogHandler());
-        eyes.setBatch(info);
-        eyes.setApiKey(System.getenv("APPLITOOLS_API_KEY"));
+    ParallelVisualTest() {
+        info = new BatchInfo("webinar demo batch test");
     }
 
     private void setUp(String udid, int systemPort) throws Exception {
@@ -51,6 +48,10 @@ class ParallelVisualTest {
         // make sure we uninstall the app before each test regardless of version
         caps.setCapability("uninstallOtherPackages", "io.cloudgrey.the_app");
         driver = new AndroidDriver(server, caps);
+        eyes = new Eyes();
+        eyes.setLogHandler(new StdoutLogHandler());
+        eyes.setBatch(info);
+        eyes.setApiKey(System.getenv("APPLITOOLS_API_KEY"));
     }
 
     @ParameterizedTest
@@ -74,11 +75,11 @@ class ParallelVisualTest {
 
             // perform our second visual check, this time of the login screen
             eyes.checkWindow(CHECK_LOGIN);
-            eyes.close();
         } finally {
             if (driver != null) {
                 driver.quit();
             }
+            eyes.close();
         }
     }
 
